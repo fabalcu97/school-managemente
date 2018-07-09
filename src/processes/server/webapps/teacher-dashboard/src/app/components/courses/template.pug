@@ -1,0 +1,91 @@
+div.side-bar
+    div.item(
+        *ngFor="let course of courses",
+        (click)="selectCourse(course)"
+    ) {{course.name}}
+
+div.content
+    div.exams(
+        *ngIf="selectedCourse"
+    )
+        div.exam(
+            *ngFor="let exam of exams",
+            (click)="openExam(exam)"
+        ) {{exam.name}}
+        div.exam(
+            (click)="openExam()"
+        ) Nuevo exámen +
+
+div.modal(
+    *ngIf="showModal"
+)
+    div.bg(
+        (click)="toogleModal()"
+    )
+    div.modal-container
+        form.info(
+            (ngSubmit)="registerExam()"
+        )
+            div.name
+                input(
+                    type="text",
+                    name="name",
+                    [(ngModel)]="currentExam.name"
+                    placeholder="Nombre",
+                )
+            div.questions
+                div.question(
+                    *ngFor="let question of currentExam.questions",
+                    (click)="editQuestion(question)"
+                ) {{question.name}}
+                div.question(
+                    (click)="editQuestion()"
+                ) Agregar pregunta +
+            div.submit
+                input(
+                    type="submit",
+                    value="Registrar Examen"
+                )
+        div.question-form(
+            *ngIf="currentQuestion"
+        )
+            div.name
+                input(
+                    type="text",
+                    name="text",
+                    placeholder="Enunciado",
+                    [(ngModel)]="currentQuestion.name"
+                )
+            div.type
+                input(
+                    type="checkbox",
+                    name="type",
+                    [(ngModel)]="questionType"
+                )
+                label Opción múltiple
+            div.options(
+                *ngIf="questionType"
+            )
+                input(
+                    type="text",
+                    name="question1",
+                    [(ngModel)]="options[0]"
+                )
+                input(
+                    type="text",
+                    name="question2",
+                    [(ngModel)]="options[1]"
+                )
+                input(
+                    type="text",
+                    name="question3",
+                    [(ngModel)]="options[2]"
+                )
+                input(
+                    type="text",
+                    name="question4",
+                    [(ngModel)]="options[3]"
+                )
+            div.options(
+                *ngIf="!questionType"
+            ) *La respuesta será escrita

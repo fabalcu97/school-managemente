@@ -1,0 +1,116 @@
+div
+  div.container(
+    *ngIf="showLogin"
+  )
+    form.form(
+      (ngSubmit)="login()"
+    )
+      input(
+        type="email",
+        name="email",
+        [(ngModel)]="user.email",
+        placeholder="Correo Electrónico",
+        required
+      )
+      input(
+        type="password",
+        name="password",
+        [(ngModel)]="user.password",
+        placeholder="Password",
+        required
+      )
+      input(
+        type="submit",
+        value="Iniciar Sesión"
+      )
+    div.foot
+      p(
+        (click)="toogleView()"
+      ) {{ showLogin ? 'Registrarse' : 'Iniciar sesión' }}
+  div.container(
+    *ngIf="!showLogin"
+  )
+    form.form(
+      (ngSubmit)="register()"
+    )
+      input(
+        type="text",
+        name="name",
+        [(ngModel)]="user.firstName",
+        placeholder="Nombre",
+        required
+      )
+      input(
+        type="text",
+        name="lastName",
+        [(ngModel)]="user.secondName",
+        placeholder="Apellidos",
+        required
+      )
+      input(
+        type="email",
+        name="email",
+        [(ngModel)]="user.email",
+        placeholder="Correo Electrónico",
+        required
+      )
+      input(
+        type="date",
+        name="birthday",
+        [(ngModel)]="user.birthday",
+        placeholder="Fecha de nacimiento",
+        required
+      )
+      input(
+        type="password",
+        name="password",
+        [(ngModel)]="user.password",
+        placeholder="Contraseña",
+        required
+      )
+      input(
+        type="number",
+        name="legalId",
+        [(ngModel)]="user.legalId",
+        placeholder="DNI",
+        required
+      )
+      select(
+        name="type",
+        [(ngModel)]="user.type"
+      )
+        option(
+          [value]="0",
+          default
+        ) -
+        option(
+          [value]="'student'"
+        ) Estudiante
+        option(
+          [value]="'teacher'"
+        ) Profesor
+        option(
+          [value]="'parent'"
+        ) Padre de familia
+
+      select(
+        name="sex",
+        [(ngModel)]="user.sex"
+      )
+        option(
+          [value]="'0'"
+        ) -
+        option(
+          [value]="'m'"
+        ) Masculin
+        option(
+          [value]="'f'"
+        ) Femenino
+      input(
+        type="submit",
+        value="Registrase"
+      )
+    div.foot
+      p(
+        (click)="toogleView()"
+      ) {{ showLogin ? 'Registrarse' : 'Iniciar sesión' }}

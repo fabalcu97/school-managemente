@@ -1,0 +1,8 @@
+div.dashboard
+  div.module(
+    *ngFor="let m of modules",
+    (click)="goToModule(m.route)"
+  ) {{m.name}}
+
+div.content
+  ui-view

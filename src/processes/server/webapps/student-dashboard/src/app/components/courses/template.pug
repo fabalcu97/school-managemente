@@ -1,0 +1,107 @@
+div.side-bar
+    .item(
+        (click)="show('1')"
+    )  Comunicación
+    .item(
+        (click)="show('2')"
+    )  Matemática
+    
+div.content(
+    *ngIf="exam == 1"
+)
+    h1 El aire y las nubes.
+    div.text
+        p
+            | La Tierra está rodeada de aire. Allí
+            | están las nubes que el aire arrastra.
+            | Seguramente has visto cómo se mueven.
+            | El aire también transporta polvo, por eso
+            | a veces el cielo se ve gris y no azul.
+            | El aire es por donde vuelan las mariposas
+            | y los pájaros.
+            | Las nubes suelen ser blancas. Puedes
+            | jugar a mirarlas e imaginar que tienen formas de objetos, plantas,
+            | animales y hasta de personas que conoces.
+            | Aunque parecen bolas de algodón, son de vapor de agua. Cuando se
+            | ponen grises es que va a llover.
+            | El arcoíris
+            | Las nubes son pequeñas gotas de agua.
+            | Cuando las gotas crecen, caen en forma de lluvia.
+            | Cuando los rayos del Sol iluminan las gotas de lluvia, se forma el
+            | arcoíris.
+            | También puedes ver el arcoíris en algunas fuentes y cascadas.
+        img(src="https://openclipart.org/download/185355/Happy-Cloud.svg")
+        
+    div.questions
+        h2 Literal
+        label 1. ¿Qué tipo de personajes intervienen?
+        input(type="text")
+        label 2. ¿De qué trata el texto?
+        input(type="text")
+        label 3. ¿Qué tipo de texto es?
+        input(type="text")
+        h2 Inferencial
+        label ¿A qué se refiere “El aire también transporta aire”?
+        input(type="text")
+        label ¿Qué otro título le pondrías a la lectura?
+        input(type="text")
+        h2 Critico
+        label ¿Qué te parece la lectura? Argumenta
+        textarea
+    
+    button Subir Respuestas
+
+div.content(
+    *ngIf="exam == 2"
+)
+    h3 Carlos tiene 1124 pelotas de futbol y básquet. Si 582 son pelotas de futbol. ¿Cuántas pelotas son de básquet?
+    table
+        tr
+            td Contenido
+            td Operación de sustracción
+        tr
+            td Situación matemática
+            td El niño formula el procedimiento para resolver el problema con números hasta de 4 cifras.
+    br
+    div.options
+        div.option
+            input(type="radio", name="rad")
+            |123 pelotas de básquet
+        div.option
+            input(type="radio", name="rad")
+            |612 pelotas de básquet
+        div.option
+            input(type="radio", name="rad")
+            |542 pelotas de básquet
+        div.option
+            input(type="radio", name="rad")
+            |442 pelotas de básquet
+    br
+    br
+    br
+    h3 Pedro y Susana leían un hermoso cuento. En la semana leyeron 1345 páginas, si el libro tiene en total 2000 páginas ¿Cuántas páginas les faltan para terminar de leer?
+    table
+        tr
+            td Contenido
+            td Operación de sustracción
+        tr
+            td Situación matemática
+            td El niño formula el procedimiento para resolver el problema con números hasta de 4 cifras.
+    br
+    div.options
+        div.option
+            input(type="radio", name="rad")
+            |555 pelotas de básquet
+        div.option
+            input(type="radio", name="rad")
+            |655 pelotas de básquet
+        div.option
+            input(type="radio", name="rad")
+            |650 pelotas de básquet
+        div.option
+            input(type="radio", name="rad")
+            |700 pelotas de básquet
+    br
+    br
+    br
+    button Subir Respuestas

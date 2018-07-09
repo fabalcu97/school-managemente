@@ -1,0 +1,153 @@
+
+vars:
+    httpPort: 8000
+    dbUrl: 'mongodb://root:root123@ds233061.mlab.com:33061/schoo-management-dev'
+    dbName: 'schoo-management-dev'
+
+httpServers:
+    -   name: 'server'
+        ports:
+            http: '$httpPort'
+        routers:
+
+            -   name: 'webapps'
+                description: 'Webapps Router'
+                path: '/'
+                routes:
+
+                    # Demo service
+                    -   method: 'GET'
+                        path: '/access'
+                        pipeline:
+                            -   staticsPath: '$access-webapp'
+                    
+                    # Teacher Dashboard
+                    -   method: 'GET'
+                        path: '/teacher-dashboard'
+                        pipeline:
+                            -   staticsPath: '$teacher-dashboard'
+                        
+                    # Student Dashboard
+                    -   method: 'GET'
+                        path: '/student-dashboard'
+                        pipeline:
+                            -   staticsPath: '$student-dashboard'
+
+            -   name: 'api'
+                description: 'API Router'
+                path: '/api'
+                routes:
+
+                    # Me service
+                    -   method: 'GET'
+                        path: '/me/:personId'
+                        pipeline:
+                            -   handler: '$modelMongoTransactionHandler'
+                                skipWhenErrors: true
+                                params:
+                                    db: '$mongoDb'
+                                    model: '$core-db-models/Person'
+                                    transaction: 'me'
+                                    transactionParams:
+                                        - '&params.personId'
+
+                    # Me service
+                    -   method: 'POST'
+                        path: '/login'
+                        pipeline:
+                            -   handler: '$modelMongoTransactionHandler'
+                                skipWhenErrors: true
+                                params:
+                                    db: '$mongoDb'
+                                    model: '$core-db-models/Person'
+                                    transaction: 'login'
+                                    transactionParams:
+                                        - '&body'
+                    
+                    # Register teacher
+                    -   method: 'POST'
+                        path: '/register-teacher'
+                        pipeline:
+                            -   handler: '$modelMongoTransactionHandler'
+                                skipWhenErrors: true
+                                params:
+                                    db: '$mongoDb'
+                                    model: '$core-db-models/Teacher'
+                                    transaction: 'register'
+                                    transactionParams:
+                                        - '&body'
+                                    
+                    # Register
+                    -   method: 'POST'
+                        path: '/register-student'
+                        pipeline:
+                            -   handler: '$modelMongoTransactionHandler'
+                                skipWhenErrors: true
+                                params:
+                                    db: '$mongoDb'
+                                    model: '$core-db-models/Student'
+                                    transaction: 'register'
+                                    transactionParams:
+                                        - '&body'
+
+                    # Register
+                    -   method: 'POST'
+                        path: '/register-parent'
+                        pipeline:
+                            -   handler: '$modelMongoTransactionHandler'
+                                skipWhenErrors: true
+                                params:
+                                    db: '$mongoDb'
+                                    model: '$core-db-models/Parent'
+                                    transaction: 'register'
+                                    transactionParams:
+                                        - '&body'
+                    
+                    # Register
+                    -   method: 'POST'
+                        path: '/course'
+                        pipeline:
+                            -   handler: '$modelMongoTransactionHandler'
+                                skipWhenErrors: true
+                                params:
+                                    db: '$mongoDb'
+                                    model: '$core-db-models/Course'
+                                    transaction: 'register'
+                                    transactionParams:
+                                        - '&body'
+
+                    # Get courses
+                    -   method: 'GET'
+                        path: '/course'
+                        pipeline:
+                            -   handler: '$modelMongoTransactionHandler'
+                                skipWhenErrors: true
+                                params:
+                                    db: '$mongoDb'
+                                    model: '$core-db-models/Course'
+                                    transaction: 'findAll'
+
+                    # Get exams
+                    -   method: 'GET'
+                        path: '/exam/:teacherId/:courseId'
+                        pipeline:
+                            -   handler: '$modelMongoTransactionHandler'
+                                skipWhenErrors: true
+                                params:
+                                    db: '$mongoDb'
+                                    model: '$core-db-models/Exam'
+                                    transaction: 'findExams'
+                                    transactionParams:
+                                        - '&params.teacherId'
+                                        - '&params.courseId'
+
+                    # Register exams
+                    -   method: 'POST'
+                        path: '/exam'
+                        pipeline:
+                            -   handler: '$modelMongoTransactionHandler'
+                                skipWhenErrors: true
+                                params:
+                                    db: '$mongoDb'
+                                    model: '$core-db-models/Course'
+                                    transaction: 'findAll'
