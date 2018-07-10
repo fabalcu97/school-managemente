@@ -20,6 +20,12 @@ httpServers:
                         path: '/access'
                         pipeline:
                             -   staticsPath: '$access-webapp'
+
+                    # Demo service
+                    -   method: 'GET'
+                        path: '/'
+                        pipeline:
+                            -   staticsPath: '$access-webapp'
                     
                     # Teacher Dashboard
                     -   method: 'GET'

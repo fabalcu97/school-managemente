@@ -23,7 +23,7 @@ export class AppComponent {
       },
       {
         name: 'Videos Explicativos',
-        route: 'exam',
+        route: 'video',
       },
       {
         name: 'Resultados',
