@@ -10,15 +10,16 @@ import { UIRouterModule } from "@uirouter/angular";
 
 import { componentsList } from './components';
 import { servicesList } from './services';
+import { BaseChartDirective } from './directives/ChartJs';
 
 @NgModule({
-  declarations: [AppComponent].concat(componentsList),
+  declarations: [AppComponent, BaseChartDirective].concat(componentsList),
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    UIRouterModule.forRoot({ states: states, useHash: true })
+    UIRouterModule.forRoot({ states: states, useHash: true, otherwise: '/user' })
   ],
   providers: [].concat(servicesList),
   bootstrap: [AppComponent]

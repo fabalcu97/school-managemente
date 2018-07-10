@@ -1,0 +1,15 @@
+
+.container
+    h1(style="text-align: center; width: 100%;") Bienvenido {{name}}
+    img(src="https://www.qualiscare.com/wp-content/uploads/2017/08/default-user.png")
+    div.chart(
+        *ngIf="chart"
+    )
+        canvas(
+            baseChart,
+            width="500",
+            height="300",
+            [datasets]="chart.data.datasets",
+            [labels]="chart.data.labels",
+            [chartType]="chart.type"
+        )

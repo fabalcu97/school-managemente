@@ -45,6 +45,10 @@ export class AppComponent {
         name: 'Vocabulario',
         route: 'exam',
       },
+      {
+        name: 'Mi perfil',
+        route: 'user',
+      },
     ];
   }
 
